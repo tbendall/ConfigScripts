@@ -23,9 +23,9 @@ hosts = [
 
 ]
 
-config_file = '' ## JUNOS set config goes here
+config_file = '< path to set config >' 
 
-diff_results_path = "../diff_results"
+diff_results_path = "< path to diff results path >" 
 
 arg_parser = argparse.ArgumentParser()
 arg_parser.add_argument('-d','--development', type=str)
@@ -72,7 +72,7 @@ def config_check():
 
                     try:
 
-                        cu.load("", format='set')
+                        cu.load(config_file, format='set')
 
                     except ConfigLoadError as e:
 
@@ -204,7 +204,7 @@ def writeResult(result,k):
 
         f.write(result[k]["diff"])
 
-
+ 
 
 if __name__ == "__main__":
 
