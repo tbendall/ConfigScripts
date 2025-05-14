@@ -1,0 +1,24 @@
+---
+
+
+BgpNeigh:
+  rpc: get-bgp-neighbor-information
+  item: 
+    bgp-peer[peer-state='Established' and peer-as!='12345']
+  view:
+    bgptable
+
+
+bgptable:
+  fields:
+    Neig: peer-address
+    state: peer-state
+    AS: peer-as
+    bgpRib: bgp-rib/name
+  groups:
+    prefix_stats: bgp-rib
+  fields_prefix_stats:
+    active-prefix: { active-prefix-count : int }
+    received-prefix: { received-prefix-count : int }
+    accepted-prefix: { accepted-prefix-count : int }
+    suppressed-prefix: {suppressed-prefix-count : int }
